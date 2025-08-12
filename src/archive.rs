@@ -1,8 +1,11 @@
 // src/archive.rs
 
-use crate::block::Block;
+use crate::structures::block::Block;
 use crate::decoder::read_general_block_header;
-use crate::structures::{BlockHeader, EndOfArchiveHeader, FileHeader, MainArchiveHeader};
+use crate::structures::{
+    base::BlockHeader, end_of_archive_header::EndOfArchiveHeader, file_header::FileHeader,
+    main_archive_header::MainArchiveHeader,
+};
 use std::io::{self, Read};
 
 pub struct Archive<R: Read> {

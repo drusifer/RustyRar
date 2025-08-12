@@ -1,7 +1,7 @@
 // src/block.rs
 
 use crate::encoder::write_general_block_header;
-use crate::structures::GeneralBlockHeader;
+use crate::structures::general_block_header::GeneralBlockHeader;
 use std::io::{self, Read, Write};
 
 /// The `Block` trait defines a common interface for all RAR block types.

@@ -4,7 +4,7 @@
 // We also need to import the functions and structs from the `app` crate.
 
 use app::decoder::*;
-use app::structures::{GeneralBlockHeader};
+use app::structures::general_block_header::GeneralBlockHeader;
 use std::io::Cursor;
 
 #[test]

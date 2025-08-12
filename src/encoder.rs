@@ -1,6 +1,6 @@
 // src/encoder.rs
 
-use crate::structures::{GeneralBlockHeader};
+use crate::structures::general_block_header::GeneralBlockHeader;
 use crc::{Crc, CRC_32_ISO_HDLC};
 use std::io::{self, Write};
 

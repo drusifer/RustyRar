@@ -1,6 +1,6 @@
 // src/decoder.rs
 
-use crate::structures::{GeneralBlockHeader};
+use crate::structures::general_block_header::GeneralBlockHeader;
 use std::io::{self, Read};
 
 /// Reads a variable-length integer (vint) from a Read source.

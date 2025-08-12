@@ -1,8 +1,11 @@
 // tests/encoder_tests.rs
 
-use app::block::{Block, BaseBlock};
 use app::structures::{
-    EndOfArchiveHeader, FileHeader, GeneralBlockHeader, MainArchiveHeader,
+    block::{Block, BaseBlock},
+    end_of_archive_header::EndOfArchiveHeader,
+    file_header::FileHeader,
+    general_block_header::GeneralBlockHeader,
+    main_archive_header::MainArchiveHeader,
 };
 use std::io::Cursor;
 

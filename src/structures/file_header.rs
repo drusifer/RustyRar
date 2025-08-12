@@ -1,56 +1,9 @@
-use crate::block::{Block, BaseBlock};
-use crate::decoder::{read_vint};
-use crate::encoder::{write_vint};
+// src/structures/file_header.rs
+
+use crate::structures::block::{Block, BaseBlock};
+use crate::decoder::read_vint;
+use crate::encoder::write_vint;
 use std::io::{self, Read, Write};
-
-/// Represents the fixed 8-byte RAR 5.0 signature.
-pub struct RarSignature {
-    pub signature: [u8; 8],
-}
-
-/// Represents the general header found at the beginning of most RAR blocks.
-#[derive(Debug, PartialEq, Eq, Clone, Default)]
-pub struct GeneralBlockHeader {
-    pub crc32: u32,          // Checksum of the block header
-    pub header_size: u64,    // Total size of the block header (variable-length integer)
-    pub header_type: u64,    // Type of the block (variable-length integer)
-    pub header_flags: u64,   // Bitmask of flags (variable-length integer)
-    pub data_size: Option<u64>, // Size of the data area following the header (optional, variable-length integer)
-}
-
-/// Represents the Main Archive Header block.
-#[derive(Debug, PartialEq, Eq, Default)]
-pub struct MainArchiveHeader {
-    pub base: BaseBlock,
-    pub archive_flags: u64, // Bitmask of archive properties (variable-length integer)
-    pub volume_number: Option<u64>, // Sequence number of the volume (optional, variable-length integer)
-}
-
-impl Block for MainArchiveHeader {
-    fn get_base(&self) -> &BaseBlock {
-        &self.base
-    }
-
-    fn get_mut_base(&mut self) -> &mut BaseBlock {
-        &mut self.base
-    }
-
-    fn encode_data(&self, writer: &mut dyn Write) -> io::Result<()> {
-        write_vint(writer, self.archive_flags)?;
-        if let Some(volume_number) = self.volume_number {
-            write_vint(writer, volume_number)?;
-        }
-        Ok(())
-    }
-
-    fn decode_data(&mut self, reader: &mut dyn Read) -> io::Result<()> {
-        self.archive_flags = read_vint(reader)?;
-        if (self.archive_flags & 0x0001) != 0 {
-            self.volume_number = Some(read_vint(reader)?);
-        }
-        Ok(())
-    }
-}
 
 /// Represents a File Header block.
 #[derive(Debug, PartialEq, Eq, Default)]
@@ -125,37 +78,4 @@ impl Block for FileHeader {
         }
         Ok(())
     }
-}
-
-/// Represents the End of Archive Header block.
-#[derive(Debug, PartialEq, Eq, Default)]
-pub struct EndOfArchiveHeader {
-    pub base: BaseBlock,
-    pub end_archive_flags: u64, // Bitmask of properties (variable-length integer)
-}
-
-impl Block for EndOfArchiveHeader {
-    fn get_base(&self) -> &BaseBlock {
-        &self.base
-    }
-
-    fn get_mut_base(&mut self) -> &mut BaseBlock {
-        &mut self.base
-    }
-
-    fn encode_data(&self, writer: &mut dyn Write) -> io::Result<()> {
-        write_vint(writer, self.end_archive_flags)
-    }
-
-    fn decode_data(&mut self, reader: &mut dyn Read) -> io::Result<()> {
-        self.end_archive_flags = read_vint(reader)?;
-        Ok(())
-    }
-}
-
-#[derive(Debug, PartialEq, Eq)]
-pub enum BlockHeader {
-    Main(MainArchiveHeader),
-    File(FileHeader),
-    End(EndOfArchiveHeader),
 }

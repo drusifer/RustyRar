@@ -25,12 +25,13 @@ The initial focus is on building the core functionality to read and parse the st
 
 Once the low-level decoders are complete, we will create a higher-level API for iterating through the archive.
 
-1.  **[Next] Create `Archive` Struct:** This struct will manage the underlying reader and provide an iterator-like interface to access the blocks.
-2.  **[ ] Implement Block Iterator:** The user should be able to loop through the archive's blocks seamlessly.
+1.  **[Done] Create `Archive` Struct:** This struct will manage the underlying reader and provide an iterator-like interface to access the blocks.
+2.  **[Done] Implement Block Iterator:** The user should be able to loop through the archive's blocks seamlessly.
+3.  **[Done] Refactor to Object-Oriented Design:** Restructure the code to use a `Block` trait and specific block type implementations for better organization and maintainability.
 
 ## Phase 3: Decompression
 
 The final phase will involve integrating a decompression library to extract the actual file data.
 
-1.  **[ ] Research Decompression Crates:** Investigate and select a suitable crate for the compression algorithms used by RAR 5.0.
+1.  **[Next] Research Decompression Crates:** Investigate and select a suitable crate for the compression algorithms used by RAR 5.0.
 2.  **[ ] Integrate Decompression:** Add logic to the `ArchiveReader` to decompress and return the file data.

@@ -9,7 +9,8 @@ This file tracks the user stories and requirements for the `rar-rs` project.
     *   [Y] Implement a decoder for the general block header (`src/decoder.rs`).
     *   [Y] Write unit tests for the decoder (`src/decoder.rs`).
     *   [Y] Implement decoders for specific block types (Main Archive Header, File Header, End of Archive Header).
-    *   [ ] Create an `Archive` reader to iterate through blocks.
+    *   [Y] Create an `Archive` reader to iterate through blocks.
+    *   [Y] Refactor the code to use a `Block` trait and an object-oriented design.
     *   [ ] Implement file data extraction and decompression.
 
 ---

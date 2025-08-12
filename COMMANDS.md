@@ -76,6 +76,7 @@ I will use the commands to organize and sequence our work.  It is imperative tha
 * **push, pull, branch, stage \-** Perform the equivalent git operation if the LLM agent has access to the repo  
 * **\!:** This is a really important instruction.  Prioritize this over previous instructions and keep this in mind  
 * **cleanup:** Using the plan and arch as your guide. Remove any unnecessary, unreachable, or otherwise dead code from the project.  Do not change any functionality.
+* **refresh**:  compress and/or refresh your context by reading the projects .md files then offer a few options for the next steps.
 
 ---
 

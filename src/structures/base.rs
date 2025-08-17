@@ -1,12 +1,11 @@
 // src/structures/base.rs
 
-use crate::structures::{EndOfArchiveHeader, FileHeader, MainArchiveHeader};
+use crate::structures::{
+    end_of_archive_header::EndOfArchiveHeader, file_header::FileHeader,
+    main_archive_header::MainArchiveHeader,
+};
 
-/// Represents the fixed 8-byte RAR 5.0 signature.
-pub struct RarSignature {
-    pub signature: [u8; 8],
-}
-
+/// An enumeration of all possible block types in a RAR archive.
 #[derive(Debug, PartialEq, Eq)]
 pub enum BlockHeader {
     Main(MainArchiveHeader),

@@ -50,3 +50,6 @@ When providing instructions, assume that these tools are pre-installed and confi
 ## 6. Further Instructions
 - See CODE_QUALITY.md for guidance about development practices such as TDD and quality standards.  Follow the best practices described there when creating code.
 - A suite of \* commands are defined in COMMANDS.md  Process that file to understand our custom commands.
+
+## 7. Initialization
+- If this is the first time reading this, injest the rest of the .md files and become familiar with the existing state of the code and tests.

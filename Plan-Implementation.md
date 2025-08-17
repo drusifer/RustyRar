@@ -21,17 +21,23 @@ The initial focus is on building the core functionality to read and parse the st
         *   `EndOfArchiveHeader`
     *   Write corresponding unit tests for each new function.
 
-## Phase 2: Archive Reader API
+## Phase 2: Archive Reader API & Refactoring
 
-Once the low-level decoders are complete, we will create a higher-level API for iterating through the archive.
+Once the low-level decoders are complete, we create a higher-level API and improve the code structure.
 
-1.  **[Done] Create `Archive` Struct:** This struct will manage the underlying reader and provide an iterator-like interface to access the blocks.
-2.  **[Done] Implement Block Iterator:** The user should be able to loop through the archive's blocks seamlessly.
+1.  **[Done] Create `Archive` Struct:** This struct manages the underlying reader and provides an iterator-like interface to access the blocks.
+2.  **[Done] Implement Block Iterator:** The user can loop through the archive's blocks seamlessly.
 3.  **[Done] Refactor to Object-Oriented Design:** Restructure the code to use a `Block` trait and specific block type implementations for better organization and maintainability.
+4.  **[Done] Refine Module Structure:** Break down the monolithic `structures.rs` file into a more organized module, with each block type in its own file.
 
 ## Phase 3: Decompression
 
 The final phase will involve integrating a decompression library to extract the actual file data.
 
-1.  **[Next] Research Decompression Crates:** Investigate and select a suitable crate for the compression algorithms used by RAR 5.0.
-2.  **[ ] Integrate Decompression:** Add logic to the `ArchiveReader` to decompress and return the file data.
+1.  **[Done] Define `Decompressor` Trait:** Create a `Decompressor` trait in `src/decompression.rs` to provide a common interface for decompression algorithms.
+2.  **[In Progress] Implement Decompression:**
+    *   **[Done]** Create a `DummyDecompressor` for uncompressed files.
+    *   **[ ]** Research and select a suitable crate for LZMA compression.
+    *   **[ ]** Implement an `LzmaDecompressor`.
+    *   **[ ]** Update the `get_decompressor` factory to return the correct decompressor based on the file header.
+3.  **[Done] Integrate Decompression:** Add logic to the `ArchiveReader` to decompress and return the file data.

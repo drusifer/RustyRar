@@ -4,6 +4,7 @@ pub mod structures;
 pub mod decoder;
 pub mod archive;
 pub mod encoder;
+pub mod decompression;
 
 #[cfg(test)]
 mod tests {

@@ -24,7 +24,7 @@ graph TD;
     B --> C(File Header 1);
     C --> D(Compressed Data 1);
     D --> E(... up to N files ...);
-    E --> F(File Header N);
+    E --> F(File Header N); 
     F --> G(Compressed Data N);
     G --> H(End of Archive Header);
 ```
@@ -41,7 +41,7 @@ packet-beta
     40-47: "Header Type (vint)"
     48-55: "Header Flags (vint)"
     56-63: "Data Size (optional vint)"
-    64-256: "Extra Data (optional, variable)"
+    64: "Extra Data (optional, variable)"
 ```
 
 **Variable-Length Integers (vint):** A space-saving encoding where each byte uses 7 bits for data and the most significant bit as a continuation flag (1 for continue, 0 for last byte).
@@ -75,7 +75,7 @@ packet-beta
     *   **File CRC32:** uint32_t (Optional checksum of uncompressed data).
     *   **Compression Info:** vint (Compression algorithm and host OS).
     *   **File Name Length:** vint (Length of File Name in bytes).
-    *   **File Name:** byte[] (File name in UTF-8).
+    *   **File Name:*`* byte[] (File name in UTF-8).
     *   **(Optional) Symlink:** byte[] (Target path for symbolic links).
 
 ### End of Archive Header

@@ -22,7 +22,7 @@ sequenceDiagram;
     participant User;
     participant ArchiveReader;
     participant Decoder;
-
+     
     User->>ArchiveReader: open("archive.rar")
     ArchiveReader->>Decoder: read_signature()
     loop For each block in archive
@@ -38,7 +38,7 @@ sequenceDiagram;
         else Header Type is End of Archive
             ArchiveReader->>Decoder: read_end_of_archive_header()
             Decoder-->>ArchiveReader: EndOfArchiveHeader
-            break
         end;
     end;
 ```
+
